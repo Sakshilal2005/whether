@@ -207,16 +207,28 @@ body{
     cursor:pointer;
 }
 
-@media (max-width:768px){
+/* MOBILE */
+@media (max-width: 768px){
 
     .dashboard{
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
     }
 
+    /* Hamburger button */
     .menu-btn{
         display:block;
+        position:fixed;
+        top:15px;
+        right:15px;
+        font-size:26px;
+        background:none;
+        border:none;
+        color:white;
+        cursor:pointer;
+        z-index:2000;
     }
 
+    /* Sidebar hidden by default */
     .sidebar{
         position:fixed;
         top:0;
@@ -224,10 +236,12 @@ body{
         width:70%;
         height:100vh;
         background:#020617;
-        transition:0.3s;
-        z-index:1000;
+        padding:30px 20px;
+        transition:0.3s ease;
+        z-index:1500;
     }
 
+    /* Sidebar visible */
     .sidebar.show{
         left:0;
     }
@@ -235,6 +249,12 @@ body{
     .weather-card{
         width:100%;
     }
+
+    .today-grid{
+        grid-template-columns:1fr;
+    }
+
+    .main{
+        padding:20px;
+    }
 }
-
-
