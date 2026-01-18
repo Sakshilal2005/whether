@@ -207,7 +207,6 @@ body{
     cursor:pointer;
 }
 
-/* MOBILE */
 @media (max-width:768px){
 
     .dashboard{
