@@ -208,24 +208,14 @@ body{
 }
 
 /* MOBILE */
-@media (max-width: 768px){
+@media (max-width:768px){
 
     .dashboard{
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
     }
 
-    /* Hamburger button */
     .menu-btn{
         display:block;
-        position:fixed;
-        top:15px;
-        right:15px;
-        font-size:26px;
-        background:none;
-        border:none;
-        color:white;
-        cursor:pointer;
-        z-index:2000;
     }
 
     .sidebar{
