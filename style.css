@@ -228,7 +228,6 @@ body{
         z-index:2000;
     }
 
-    /* Sidebar hidden by default */
     .sidebar{
         position:fixed;
         top:0;
@@ -236,12 +235,10 @@ body{
         width:70%;
         height:100vh;
         background:#020617;
-        padding:30px 20px;
-        transition:0.3s ease;
-        z-index:1500;
+        transition:0.3s;
+        z-index:1000;
     }
 
-    /* Sidebar visible */
     .sidebar.show{
         left:0;
     }
@@ -249,12 +246,6 @@ body{
     .weather-card{
         width:100%;
     }
-
-    .today-grid{
-        grid-template-columns:1fr;
-    }
-
-    .main{
-        padding:20px;
-    }
 }
+
+
