@@ -63,8 +63,6 @@ body{
     background:linear-gradient(135deg,#0f172a,#020617);
     position:fixed;
     top:0;
-    left: 0;
-    width: 100%;
     z-index:2000;
 }
 
@@ -292,3 +290,4 @@ body{
         font-size:36px;
     }
 }
+
