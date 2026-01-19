@@ -52,6 +52,28 @@ body{
     padding:30px;
 }
 
+/* MOBILE HEADER */
+.mobile-header{
+    display:none;
+    align-items:center;
+    gap:15px;
+    padding:15px;
+    height:60px;
+    background:linear-gradient(135deg,#0f172a,#020617);
+    position:sticky;
+    top:0;
+    z-index:2000;
+}
+
+/* MENU BUTTON */
+.menu-btn{
+    font-size:26px;
+    background:none;
+    border:none;
+    color:white;
+    cursor:pointer;
+}
+
 /* TOP BAR */
 .topbar{
     display:flex;
@@ -89,6 +111,7 @@ body{
 .active-section{
     display:block;
 }
+
 /* TODAY */
 .today-grid{
     display:grid;
@@ -146,15 +169,6 @@ body{
     width:50px;
 }
 
-.forecast-card h4{
-    margin:10px 0;
-    font-weight:400;
-}
-
-.forecast-card p{
-    color:#38bdf8;
-}
-
 /* WEATHER CARD */
 .weather-card{
     background:linear-gradient(135deg,#0ea5e9,#6366f1);
@@ -198,14 +212,7 @@ body{
 .stat-box h3{
     color:#38bdf8;
 }
-.menu-btn{
-    display:none;
-    font-size:26px;
-    background:none;
-    border:none;
-    color:white;
-    cursor:pointer;
-}
+
 
 @media (max-width:768px){
 
@@ -213,28 +220,73 @@ body{
         grid-template-columns:1fr;
     }
 
-    .menu-btn{
-        display:block;
+    .mobile-header{
+        display:flex;
     }
 
+    /* Sidebar */
     .sidebar{
         position:fixed;
         top:0;
         left:-100%;
-        width:70%;
+        width:75%;
         height:100vh;
-        background:#020617;
+        z-index:1500;
         transition:0.3s;
-        z-index:1000;
     }
 
     .sidebar.show{
         left:0;
     }
 
+    /* MAIN FIX (NO OVERLAP) */
+    .main{
+        padding:20px;
+    }
+
+    .topbar h1{
+        display:none;
+    }
+
+    .topbar{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .search{
+        width:100%;
+    }
+
     .weather-card{
         width:100%;
+        margin-bottom:10px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .today-grid{
+        grid-template-columns:1fr;
+    }
+
+    .forecast-cards{
+        grid-template-columns:repeat(2,1fr);
     }
 }
 
+/* SMALL MOBILE */
+@media (max-width:480px){
 
+    body{
+        font-size:14px;
+    }
+
+    .weather-card{
+        padding:20px;
+    }
+
+    .temp{
+        font-size:36px;
+    }
+}
