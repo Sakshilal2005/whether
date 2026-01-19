@@ -50,6 +50,7 @@ body{
 /* MAIN */
 .main{
     padding:30px;
+    padding-top: 90px;
 }
 
 /* MOBILE HEADER */
@@ -60,8 +61,10 @@ body{
     padding:15px;
     height:60px;
     background:linear-gradient(135deg,#0f172a,#020617);
-    position:sticky;
+    position:fixed;
     top:0;
+    left: 0;
+    width: 100%;
     z-index:2000;
 }
 
@@ -213,7 +216,7 @@ body{
     color:#38bdf8;
 }
 
-
+/*  MOBILE  */
 @media (max-width:768px){
 
     .dashboard{
@@ -239,7 +242,6 @@ body{
         left:0;
     }
 
-    /* MAIN FIX (NO OVERLAP) */
     .main{
         padding:20px;
     }
