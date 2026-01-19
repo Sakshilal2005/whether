@@ -50,7 +50,6 @@ body{
 /* MAIN */
 .main{
     padding:30px;
-    padding-top:100px;
 }
 
 /* MOBILE HEADER */
@@ -61,7 +60,7 @@ body{
     padding:15px;
     height:60px;
     background:linear-gradient(135deg,#0f172a,#020617);
-    position:fixed;
+    position:sticky;
     top:0;
     z-index:2000;
 }
@@ -214,7 +213,7 @@ body{
     color:#38bdf8;
 }
 
-/*  MOBILE  */
+/* MOBILE */
 @media (max-width:768px){
 
     .dashboard{
@@ -228,10 +227,10 @@ body{
     /* Sidebar */
     .sidebar{
         position:fixed;
-        top: 60;
+        top:0;
         left:-100%;
         width:75%;
-        height: calc(100vh - 60px);
+        height:100vh;
         z-index:1500;
         transition:0.3s;
     }
@@ -242,7 +241,6 @@ body{
 
     .main{
         padding:20px;
-         padding-top:100px;
     }
 
     .topbar h1{
