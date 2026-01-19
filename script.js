@@ -4,11 +4,11 @@ const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?units=metr
 
 let isCelsius = true;
 
-// INPUTS
+/*  INPUTS*/
 const cityInput = document.getElementById("cityInput");
 const searchBtn = document.getElementById("searchBtn");
 
-// DASHBOARD
+/*  DASHBOARD */
 const tempEl = document.querySelector(".temp");
 const cityEl = document.querySelector(".city");
 const humidityEl = document.querySelector(".humidity");
@@ -16,26 +16,26 @@ const windEl = document.querySelector(".wind");
 const conditionEl = document.querySelector(".condition");
 const weatherIcon = document.querySelector(".weather-icon");
 
-// TODAY
+/* TODAY  */
 const feelsEl = document.getElementById("feels");
 const minTempEl = document.getElementById("minTemp");
 const maxTempEl = document.getElementById("maxTemp");
 const pressureEl = document.getElementById("pressure");
 
-// FORECAST
+/* FORECAST  */
 const forecastContainer = document.getElementById("forecastCards");
 
-// CITIES
+/* CITIES  */
 const citiesList = document.getElementById("citiesList");
 
-// SETTINGS
+/*  SETTINGS  */
 const unitToggle = document.getElementById("unitToggle");
 
-// SECTIONS
+/* SECTIONS  */
 const menuItems = document.querySelectorAll(".menu li");
 const sections = document.querySelectorAll(".section");
 
-
+/* WEATHER */
 async function checkWeather(city) {
     if (!city) return;
 
@@ -48,7 +48,6 @@ async function checkWeather(city) {
 
         const data = await res.json();
 
-        // DASHBOARD
         cityEl.innerText = data.name;
         tempEl.innerText = formatTemp(data.main.temp);
         humidityEl.innerText = data.main.humidity + "%";
@@ -56,7 +55,6 @@ async function checkWeather(city) {
         conditionEl.innerText = data.weather[0].main;
         updateIcon(data.weather[0].main);
 
-        // TODAY
         feelsEl.innerText = formatTemp(data.main.feels_like);
         pressureEl.innerText = data.main.pressure;
 
@@ -71,11 +69,8 @@ async function checkWeather(city) {
     }
 }
 
-
 async function loadTodayMinMax(lat, lon) {
-    const res = await fetch(
-        `${forecastUrl}&lat=${lat}&lon=${lon}&appid=${apiKey}`
-    );
+    const res = await fetch(`${forecastUrl}&lat=${lat}&lon=${lon}&appid=${apiKey}`);
     const data = await res.json();
 
     const today = new Date().getDate();
@@ -83,21 +78,17 @@ async function loadTodayMinMax(lat, lon) {
 
     data.list.forEach(item => {
         const itemDate = new Date(item.dt_txt).getDate();
-        if (itemDate === today) {
-            temps.push(item.main.temp);
-        }
+        if (itemDate === today) temps.push(item.main.temp);
     });
 
-    if (temps.length > 0) {
+    if (temps.length) {
         minTempEl.innerText = formatTemp(Math.min(...temps));
         maxTempEl.innerText = formatTemp(Math.max(...temps));
     }
 }
 
 async function loadForecast(lat, lon) {
-    const res = await fetch(
-        `${forecastUrl}&lat=${lat}&lon=${lon}&appid=${apiKey}`
-    );
+    const res = await fetch(`${forecastUrl}&lat=${lat}&lon=${lon}&appid=${apiKey}`);
     const data = await res.json();
 
     forecastContainer.innerHTML = "";
@@ -119,50 +110,37 @@ async function loadForecast(lat, lon) {
     }
 }
 
-
+/* ICONS */
 function updateIcon(weather) {
     weatherIcon.src = getIcon(weather);
 }
 
 function getIcon(weather) {
     switch (weather) {
-        case "Clouds":
-            return "Images/clouds.png";
-
+        case "Clouds": return "Images/clouds.png";
         case "Rain":
-        case "Thunderstorm":
-            return "Images/rain.png";
-
-        case "Drizzle":
-            return "Images/drizzle.png";
-
-        case "Snow":
-            return "Images/snow.png";
-
+        case "Thunderstorm": return "Images/rain.png";
+        case "Drizzle": return "Images/drizzle.png";
+        case "Snow": return "Images/snow.png";
         case "Mist":
         case "Haze":
         case "Fog":
         case "Smoke":
         case "Dust":
         case "Sand":
-        case "Ash":
-            return "Images/mist.png";
-
-        case "Clear":
-        default:
-            return "Images/clear.png";
+        case "Ash": return "Images/mist.png";
+        default: return "Images/clear.png";
     }
 }
 
-
-
+/* HELPERS  */
 function formatTemp(temp) {
     return isCelsius
         ? Math.round(temp) + "°C"
         : Math.round((temp * 9) / 5 + 32) + "°F";
 }
 
-
+/* SAVED CITIES  */
 function saveCity(city) {
     let cities = JSON.parse(localStorage.getItem("cities")) || [];
     if (!cities.includes(city)) {
@@ -182,6 +160,7 @@ function renderCities() {
         li.onclick = () => {
             checkWeather(city);
             openSection("dashboard");
+            closeSidebar(); 
         };
         citiesList.appendChild(li);
     });
@@ -189,7 +168,7 @@ function renderCities() {
 
 renderCities();
 
-
+/*  EVENTS */
 unitToggle.addEventListener("change", () => {
     isCelsius = !unitToggle.checked;
     if (cityEl.innerText !== "City") {
@@ -197,32 +176,46 @@ unitToggle.addEventListener("change", () => {
     }
 });
 
-
 searchBtn.onclick = () => checkWeather(cityInput.value);
 cityInput.addEventListener("keypress", e => {
     if (e.key === "Enter") checkWeather(cityInput.value);
 });
 
-
 menuItems.forEach(item => {
-    item.onclick = () => openSection(item.dataset.section);
+    item.onclick = () => {
+        openSection(item.dataset.section);
+        closeSidebar(); 
+    };
 });
 
+/*  SECTIONS */
 function openSection(sectionId) {
     menuItems.forEach(i => i.classList.remove("active"));
     sections.forEach(s => s.classList.remove("active-section"));
 
-    document
-        .querySelector(`[data-section="${sectionId}"]`)
-        .classList.add("active");
-
-    document
-        .getElementById(sectionId)
-        .classList.add("active-section");
+    document.querySelector(`[data-section="${sectionId}"]`).classList.add("active");
+    document.getElementById(sectionId).classList.add("active-section");
 }
 
-function toggleMenu(){
-    document.querySelector('.sidebar').classList.toggle('show');
+/*  MOBILE SIDEBAR  */
+function toggleMenu() {
+    document.querySelector(".sidebar").classList.toggle("show");
 }
 
+function closeSidebar() {
+    document.querySelector(".sidebar").classList.remove("show");
+}
 
+/* Close when clicking outside */
+document.addEventListener("click", e => {
+    const sidebar = document.querySelector(".sidebar");
+    const menuBtn = document.querySelector(".menu-btn");
+
+    if (
+        sidebar.classList.contains("show") &&
+        !sidebar.contains(e.target) &&
+        !menuBtn.contains(e.target)
+    ) {
+        closeSidebar();
+    }
+});
