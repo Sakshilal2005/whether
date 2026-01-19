@@ -50,7 +50,7 @@ body{
 /* MAIN */
 .main{
     padding:30px;
-    padding-top: 90px;
+    padding-top:100px;
 }
 
 /* MOBILE HEADER */
@@ -228,10 +228,10 @@ body{
     /* Sidebar */
     .sidebar{
         position:fixed;
-        top:0;
+        top: 60;
         left:-100%;
         width:75%;
-        height:100vh;
+        height: calc(100vh - 60px);
         z-index:1500;
         transition:0.3s;
     }
@@ -242,6 +242,7 @@ body{
 
     .main{
         padding:20px;
+         padding-top:100px;
     }
 
     .topbar h1{
@@ -290,4 +291,3 @@ body{
         font-size:36px;
     }
 }
-
