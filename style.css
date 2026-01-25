@@ -21,24 +21,35 @@ body{
 /* SIDEBAR */
 .sidebar{
     background:#020617;
-    padding:30px 20px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
 }
 
+/* SIDEBAR TITLE */
 .sidebar h2{
-    text-align:center;
-    margin-bottom:30px;
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    color:#fff;
 }
 
+/* MENU */
 .menu{
     list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
 }
 
 .menu li{
-    padding:12px 15px;
-    margin-bottom:10px;
-    border-radius:10px;
+    padding:12px 14px;
+    border-radius:12px;
     cursor:pointer;
     color:#cbd5f5;
+    transition:0.3s;
 }
 
 .menu li:hover,
@@ -224,14 +235,13 @@ body{
         display:flex;
     }
 
-    /* Sidebar */
     .sidebar{
         position:fixed;
         top:0;
         left:-100%;
         width:75%;
         height:100vh;
-        z-index:1500;
+        z-index:3000;
         transition:0.3s;
     }
 
